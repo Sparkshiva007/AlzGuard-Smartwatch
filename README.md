@@ -1,146 +1,161 @@
+# AlzGuard
+
 ![Platform](https://img.shields.io/badge/Platform-ESP32--S3-blue)
 ![License](https://img.shields.io/badge/License-GPLv3-green)
 ![Status](https://img.shields.io/badge/Status-Working-success)
-![Project](https://img.shields.io/badge/Category-Healthcare-red)
+![Category](https://img.shields.io/badge/Category-Healthcare-red)
 
-# AlzGuard
+AlzGuard is an ESP32-S3 based wearable healthcare monitoring and safety system designed for Alzheimer patient assistance. The project integrates real-time vital monitoring, intelligent fall detection, reminder management, BLE communication, Wi-Fi connectivity, and a caregiver companion device into a single platform.
 
-**AlzGuard** is an intelligent healthcare and safety ecosystem specifically designed for Alzheimer patients. The system combines a custom-designed smartwatch, real-time health monitoring, smart medication reminders, intelligent fall detection, and a caregiver companion device to improve patient safety and independence.
-
-By integrating wearable technology, IoT communication, emergency response mechanisms, and caregiver monitoring, AlzGuard provides a practical solution to address the daily challenges faced by Alzheimer's patients and their families.
-
----
-
-## Problem Statement
-
-Alzheimer patients frequently experience:
-
-- Memory loss
-- Missed medications
-- Difficulty following daily routines
-- Increased risk of falls
-- Delayed emergency response
-- Reduced independence
-
-Caregivers often struggle to continuously monitor patients while managing their own responsibilities.
-
-AlzGuard was developed to bridge this gap by creating a wearable healthcare and safety ecosystem that actively assists patients while keeping caregivers informed.
-
----
-
-## Key Features
+## Features
 
 ### Health Monitoring
 
-- Real-time Heart Rate Monitoring
-- Blood Oxygen (SpO₂) Monitoring
-- Temperature Monitoring
-- Humidity Monitoring
-- Battery Status Monitoring
+- Heart Rate Monitoring (MAX30100)
+- Blood Oxygen Monitoring (SpO₂)
+- Temperature Monitoring (AHT21B)
+- Humidity Monitoring (AHT21B)
+- Battery Monitoring
 
 ### Safety Features
 
-- Intelligent Fall Detection
-- Multi-Stage Motion Analysis
+- Multi-Stage Fall Detection
+- Free-Fall Analysis
+- Impact Detection
+- Stillness Verification
 - Emergency Alert Generation
-- "I AM SAFE" Confirmation System
-- Caregiver Notifications
+- "I AM SAFE" Confirmation
 
-### Smart Assistance
+### Reminder System
 
 - Medication Reminders
-- Water Intake Reminders
+- Water Reminders
 - Meal Reminders
 - Exercise Reminders
 - Sleep Reminders
 - Custom Reminders
+- Persistent Storage using NVS
 
 ### Connectivity
 
 - Bluetooth Low Energy (BLE)
 - Wi-Fi Communication
+- Companion Device Communication
 - Mobile Dashboard Integration
-- Companion Monitoring Device
 
-### User Experience
+### User Interface
 
-- Touchscreen Interface
-- Elderly-Friendly UI
-- Large Readable Fonts
-- Simple Navigation
+- LVGL-based Touch Interface
 - Real-Time Dashboard
+- Reminder Management
+- Device Status Monitoring
+- Emergency Alert Screens
 
----
-
-## System Architecture
-
-### Smartwatch Unit
-
-The wearable smartwatch is used directly by the patient and provides:
-
-- Vital Monitoring
-- Reminder Notifications
-- Fall Detection
-- Emergency Alerts
-- Wireless Connectivity
-- Touchscreen Interaction
-
-### Caregiver Companion Device
-
-The ESP32-S3 Companion Device acts as a monitoring hub and provides:
-
-- Live Health Monitoring
-- Emergency Notifications
-- Reminder Notifications
-- Connectivity Monitoring
-- Continuous Caregiver Support
-
----
-
-## Hardware Components
+## Hardware
 
 ### Smartwatch
 
-#### Waveshare ESP32-S3 1.69" Touch Display
-
-Main controller responsible for:
-
-- Sensor Processing
-- Display Management
-- BLE Communication
-- Wi-Fi Communication
-- User Interface Rendering
-
-#### MAX30100
-
-- Heart Rate Monitoring
-- SpO₂ Measurement
-
-#### AHT21B
-
-- Temperature Monitoring
-- Humidity Monitoring
-
-#### 3.7V 950mAh Li-Ion Battery
-
-Provides portable operation and wearable usability.
+| Component | Description |
+|------------|------------|
+| Waveshare ESP32-S3 1.69" Touch Display | Main Controller |
+| MAX30100 | Heart Rate and SpO₂ Sensor |
+| AHT21B | Temperature and Humidity Sensor |
+| QMI8658 IMU | Fall Detection |
+| 3.7V 950mAh Li-Ion Battery | Power Source |
 
 ### Companion Device
 
-#### ESP32-S3-BOX-3
+| Component | Description |
+|------------|------------|
+| ESP32-S3-BOX-3 | Caregiver Monitoring Device |
 
-Functions:
+## Repository Structure
 
-- Receives Alerts
-- Displays Patient Data
-- Caregiver Monitoring
-- Communication Bridge
+```text
+AlzGuard/
+├── Firmware/
+│   ├── alzguard_main.ino
+│   ├── alzguard_types.h
+│   ├── battery_monitor.h
+│   ├── fall_detector.h
+│   ├── reminder_manager.h
+│   ├── wifi_manager.h
+│   └── ui_main.h
+│
+├── CAD/
+├── Documentation/
+├── Images/
+└── README.md
+```
+
+## Building
+
+### Requirements
+
+- Arduino IDE 2.x
+- ESP32 Board Package
+- LVGL
+- ArduinoJson
+- Preferences
+
+### Clone Repository
+
+```bash
+git clone https://github.com/<your-username>/AlzGuard.git
+```
+
+### Open Project
+
+```text
+Firmware/alzguard_main.ino
+```
+
+### Build Steps
+
+1. Install required libraries
+2. Install ESP32 Board Package
+3. Select ESP32-S3 board
+4. Compile the project
+5. Upload firmware
+
+## Wiring
+
+### MAX30100
+
+| MAX30100 | ESP32-S3 |
+|-----------|-----------|
+| VCC | 3.3V |
+| GND | GND |
+| SDA | SDA |
+| SCL | SCL |
+
+### AHT21B
+
+| AHT21B | ESP32-S3 |
+|---------|---------|
+| VCC | 3.3V |
+| GND | GND |
+| SDA | SDA |
+| SCL | SCL |
+
+> Replace SDA and SCL with the actual GPIO pins used in your implementation.
+
+## Images
+
+### Final Prototype
+
+![Final Prototype](Images/final_prototype.jpg)
+
+### System Architecture
+
+![System Architecture](Images/system_architecture.png)
+
+### User Interface
+
+![UI Dashboard](Images/ui_dashboard.jpg)
 
 ## License
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0).
 
-You are free to use, modify, and distribute this software under the terms of the GPL-3.0 license. Any derivative work must also be distributed under the same license.
-
-For more information, see the LICENSE file or visit:
-https://www.gnu.org/licenses/gpl-3.0.en.html
+See the LICENSE file for details.
