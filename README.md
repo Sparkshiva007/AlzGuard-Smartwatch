@@ -81,9 +81,9 @@ AlzGuard/
 │   ├── reminder_manager.h
 │   ├── wifi_manager.h
 │   └── ui_main.h
-│
+├── APP/
+│   ├── alzguard.apk
 ├── CAD/
-├── Documentation/
 ├── Images/
 └── README.md
 ```
@@ -101,7 +101,7 @@ AlzGuard/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/<your-username>/AlzGuard.git
+git clone https://github.com/Sparkshiva007/AlzGuard-Smartwatch.git
 ```
 
 ### Open Project
@@ -150,9 +150,6 @@ Firmware/alzguard_main.ino
 
 ![System Architecture](Images/system_architecture.png)
 
-### User Interface
-
-![UI Dashboard](Images/ui_dashboard.jpg)
 
 ## License
 
